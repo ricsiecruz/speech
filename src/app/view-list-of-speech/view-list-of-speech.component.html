@@ -1,0 +1,12 @@
+<div class="two-column-container">
+    <div class="list">
+      <div *ngFor="let data of listOfSpeech" class="list-item" [class.selected-item]="selectedData?.title === data.title" (click)="selectTitle(data)">
+        {{ data.title }}
+      </div>
+    </div>
+    <div class="author-column">
+      <div *ngIf="selectedData?.title" class="author">
+        {{ selectedData.speech }}
+      </div>
+    </div>
+</div>

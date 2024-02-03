@@ -1,0 +1,31 @@
+.nav {
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    color: #121212;
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto !important;
+}
+
+.nav div {
+    width: 220px;
+    padding: 8px 0;
+}
+
+.nav div:nth-child(2) {
+    border-right: 1px solid #e2e8f0;
+}
+
+.active, .nav div:hover {
+    background-color: #3b82f6;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.nav div:first-child.active, .nav div:first-child:hover {
+    border-radius: 6px 0 0 6px;
+  }
+  
+  .nav div:last-child.active, .nav div:last-child:hover {
+    border-radius: 0 6px 6px 0;
+  }
