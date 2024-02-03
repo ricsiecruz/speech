@@ -10,22 +10,28 @@ import { map, tap } from 'rxjs';
 export class ViewListOfSpeechComponent {
 
   listOfSpeech: any[] = [];
-  selectedTitle: string | null = null;
   selectedData: any;
+  keywords: any;
+  keywordsList = [
+    {keywords: ''}
+  ]
 
   constructor(private speechService: SpeechService) {}
 
   ngOnInit() {
     this.speechService.getSpeechList()
       .subscribe(res => {
-        console.log('res', res)
         this.listOfSpeech = res.speeches;
-        console.log('list', this.listOfSpeech)
+        if (this.listOfSpeech.length > 0) {
+          this.selectTitle(this.listOfSpeech[0]);
+        }
       })
   }
   selectTitle(data: any): void {
-    console.log('aaa', this.selectedData, this.selectedData?.title)
-    console.log('data', data)
     this.selectedData = data;
+    this.selectedData.keywords.map((text: any) => {
+      this.keywords = text.text;
+      this.keywordsList.push({keywords: this.keywords})
+    })
   }
 }

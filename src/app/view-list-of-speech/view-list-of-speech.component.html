@@ -4,9 +4,25 @@
         {{ data.title }}
       </div>
     </div>
-    <div class="author-column">
-      <div *ngIf="selectedData?.title" class="author">
-        {{ selectedData.speech }}
-      </div>
+    <div *ngIf="selectedData?.title" class="right">
+        <div class="speech-column">
+            <div class="speech">
+                {{ selectedData.speech }}
+            </div>
+        </div>
+        <div class="list-details">
+            <div class="author">{{ selectedData.author }}</div>
+            <div>
+                <ng-container *ngFor="let item of keywordsList">
+                    <span *ngIf="item.keywords !== ''" class="list-keywords">{{ item.keywords }}</span>
+                </ng-container>
+            </div>
+            <div class="date">{{ selectedData.date }}</div>
+        </div>
+        <div class="list-buttons">
+            <div class="list-delete">Delete</div>
+            <div class="list-save">Save</div>
+            <div class="list-share">Share</div>
+        </div>
     </div>
 </div>
