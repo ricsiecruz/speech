@@ -1,1 +1,22 @@
-<p>search-speech works!</p>
+<input [(ngModel)]="searchQuery" placeholder="Search speeches..." (keyup)="search(searchQuery)">
+<div *ngIf="filteredList.length > 0" class="two-column-container">
+  <div class="list">
+    <div *ngFor="let data of filteredList" class="list-item" [class.selected-item]="selectedData?.title === data.title" (click)="selectTitle(data)">
+      {{ data.title }}
+    </div>
+  </div>
+  <div *ngIf="selectedData?.title" class="right">
+    <div class="speech-column">
+      <textarea class="speech" [(ngModel)]="selectedData!.speech"></textarea>
+    </div>
+    <div class="list-details">
+      <div class="author">{{ selectedData!.author }}</div>
+      <div>
+        <ng-container *ngFor="let item of keywordsList">
+          <span *ngIf="item.keywords !== ''" class="list-keywords">{{ item.keywords }}</span>
+        </ng-container>
+      </div>
+      <div class="date">{{ selectedData!.date | date: 'MMMM d, y' }}</div>
+    </div>
+  </div>
+</div>
