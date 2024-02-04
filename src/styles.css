@@ -7,3 +7,12 @@ html, body {
 .row {
     margin: 0 !important;
 }
+
+  .modal-content {
+    width: 400px !important;
+  }
+
+  ::ng-deep .modal-dialog {
+    margin: 0 auto !important;
+  }
+  

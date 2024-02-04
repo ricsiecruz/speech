@@ -51,7 +51,7 @@ export class ViewListOfSpeechComponent {
   
   openDelete(): void {
     if (this.selectedData) {
-      const modalRef = this.modalService.open(this.modalContent, { size: 'lg' });
+      const modalRef = this.modalService.open(this.modalContent);
       this.title = this.selectedData.title;
 
   }
