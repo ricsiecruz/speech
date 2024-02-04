@@ -15,7 +15,7 @@
                     <span *ngIf="item.keywords !== ''" class="list-keywords">{{ item.keywords }}</span>
                 </ng-container>
             </div>
-            <div class="date">{{ selectedData.date }}</div>
+            <div class="date">{{ selectedData.date | date: 'MMMM d, y' }}</div>
         </div>
         <div class="list-buttons">
             <div class="list-delete" (click)="openDelete()">Delete</div>

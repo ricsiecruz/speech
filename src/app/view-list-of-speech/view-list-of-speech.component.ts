@@ -24,8 +24,7 @@ export class ViewListOfSpeechComponent {
 
   constructor(
     private speechService: SpeechService,
-    private modalService: NgbModal,
-    private router: Router
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -75,6 +74,10 @@ export class ViewListOfSpeechComponent {
   
       if (indexToDelete !== -1) {
         this.listOfSpeech.splice(indexToDelete, 1);
+  
+        // Update local storage after deletion
+        localStorage.setItem('speechData', JSON.stringify(this.listOfSpeech));
+  
         this.modalService.dismissAll(); // Close the modal
   
         // Automatically select the next item if available
@@ -83,6 +86,7 @@ export class ViewListOfSpeechComponent {
       }
     }
   }
+  
   
   save(): void {
     // Update the selectedData with the new speech

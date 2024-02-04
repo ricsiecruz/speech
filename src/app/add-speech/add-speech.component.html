@@ -1,1 +1,24 @@
-<p>add-speech works!</p>
+<div class="add">
+    <div>
+        <label>Title</label>
+        <input [(ngModel)]="currentSpeech.title" placeholder="Enter the title">
+    </div>
+
+    <div>
+        <label>Speech</label>
+        <textarea [(ngModel)]="currentSpeech.speech" placeholder="Enter your speech"></textarea>
+    </div>
+    
+    <div>
+        <label>Author</label>
+        <input [(ngModel)]="currentSpeech.author" placeholder="Enter the author">
+    </div>
+    
+    <div>
+        <label>Keywords</label>
+        <input [(ngModel)]="currentSpeech.keywords" placeholder="Enter keywords, separated by commas">
+    </div>
+    
+    <button (click)="add()">Add Speech</button>
+  </div>
+  
