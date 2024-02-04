@@ -6,9 +6,7 @@
     </div>
     <div *ngIf="selectedData?.title" class="right">
         <div class="speech-column">
-            <div class="speech">
-                {{ selectedData.speech }}
-            </div>
+            <textarea class="speech" [(ngModel)]="selectedData.speech"></textarea>
         </div>
         <div class="list-details">
             <div class="author">{{ selectedData.author }}</div>
@@ -21,7 +19,7 @@
         </div>
         <div class="list-buttons">
             <div class="list-delete" (click)="openDelete()">Delete</div>
-            <div class="list-save">Save</div>
+            <div class="list-save" (click)="save()">Save</div>
             <div class="list-share">Share</div>
         </div>
     </div>

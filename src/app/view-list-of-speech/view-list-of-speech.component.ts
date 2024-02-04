@@ -20,6 +20,7 @@ export class ViewListOfSpeechComponent {
     {keywords: ''}
   ]
   title: string = '';
+  updatedSpeech: string = '';
 
   constructor(
     private speechService: SpeechService,
@@ -28,8 +29,19 @@ export class ViewListOfSpeechComponent {
   ) {}
 
   ngOnInit() {
-    this.getSpeechList()
+    const savedSpeechData = localStorage.getItem('speechData');
+  
+    if (savedSpeechData) {
+      this.listOfSpeech = JSON.parse(savedSpeechData);
+    } else {
+      this.getSpeechList();
+    }
+  
+    if (this.listOfSpeech.length > 0) {
+      this.selectTitle(this.listOfSpeech[0]);
+    }
   }
+  
 
   getSpeechList() {
     this.speechService.getSpeechList()
@@ -71,6 +83,16 @@ export class ViewListOfSpeechComponent {
       }
     }
   }
+  
+  save(): void {
+    // Update the selectedData with the new speech
+    if (this.selectedData) {
+      this.selectedData.speech
+      // Save the updated data to local storage
+      localStorage.setItem('speechData', JSON.stringify(this.listOfSpeech));
+    }
+  }
+  
   
   
 }

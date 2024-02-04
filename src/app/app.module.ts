@@ -8,6 +8,7 @@ import { ViewListOfSpeechComponent } from './view-list-of-speech/view-list-of-sp
 import { AddSpeechComponent } from './add-speech/add-speech.component';
 import { SearchSpeechComponent } from './search-speech/search-speech.component';
 import { SpeechService } from './speech.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SpeechService } from './speech.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule
   ],
