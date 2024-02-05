@@ -17,6 +17,7 @@ export class SearchSpeechComponent {
   titleQuery: string = '';
   keywordsQuery: string = '';
   isMobile = false;
+  isSearchEmpty: boolean = false;
 
   constructor() {}
 
@@ -52,6 +53,15 @@ export class SearchSpeechComponent {
     }
   }
 
+  toggleSelection(data: any): void {
+    if (this.selectedData && this.selectedData.title === data.title) {
+      // Clicking the same title again should collapse the right column
+      this.selectedData = null;
+    } else {
+      // Clicking a different title should expand the right column
+      this.selectedData = data;
+    }
+  }
   search(): void {
     // Perform case-insensitive search on author, title, and keywords
     this.filteredList = this.listOfSpeech.filter(speech =>
@@ -59,6 +69,7 @@ export class SearchSpeechComponent {
       speech.title.toLowerCase().includes(this.titleQuery.toLowerCase()) &&
       speech.keywords.some(keyword => keyword.text.toLowerCase().includes(this.keywordsQuery.toLowerCase()))
     );
+    this.isSearchEmpty = this.filteredList.length === 0;
   }
   resetFilters(): void {
     // Clear search queries and reset filteredList to the original list

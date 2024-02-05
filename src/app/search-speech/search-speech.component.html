@@ -37,24 +37,53 @@
 </div>
 </ng-template>
 
-<div *ngIf="filteredList.length > 0" class="two-column-container">
-  <div class="list">
-    <div *ngFor="let data of filteredList" class="list-item" [class.selected-item]="selectedData?.title === data.title" (click)="selectTitle(data)">
-      {{ data.title }}
-    </div>
-  </div>
-  <div *ngIf="selectedData?.title" class="right">
-    <div class="speech-column">
-      <textarea class="speech" [(ngModel)]="selectedData!.speech" disabled></textarea>
-    </div>
-    <div class="list-details">
-      <div class="author">{{ selectedData!.author }}</div>
-      <div>
-        <ng-container *ngFor="let item of keywordsList">
-          <span *ngIf="item.keywords !== ''" class="list-keywords">{{ item.keywords }}</span>
-        </ng-container>
+<div *ngIf="!isMobile; else filteredMobile">
+  desktop
+  <div *ngIf="filteredList.length > 0" class="two-column-container">
+    <div class="list">
+      <div *ngFor="let data of filteredList" class="list-item" [class.selected-item]="selectedData?.title === data.title" (click)="selectTitle(data)">
+        {{ data.title }}
       </div>
-      <div class="date">{{ selectedData!.date | date: 'MMMM d, y' }}</div>
+    </div>
+    <div *ngIf="selectedData?.title" class="right">
+      <div class="speech-column">
+        <textarea class="speech" [(ngModel)]="selectedData!.speech" disabled></textarea>
+      </div>
+      <div class="list-details">
+        <div class="author">{{ selectedData!.author }}</div>
+        <div>
+          <ng-container *ngFor="let item of keywordsList">
+            <span *ngIf="item.keywords !== ''" class="list-keywords">{{ item.keywords }}</span>
+          </ng-container>
+        </div>
+        <div class="date">{{ selectedData!.date | date: 'MMMM d, y' }}</div>
+      </div>
     </div>
   </div>
+  
 </div>
+<ng-template #filteredMobile>
+  <div class="mobile-two-column-container">
+    <div *ngFor="let data of filteredList" class="mobile-container">
+      <div 
+        class="mobile-list-item" 
+        [class.mobile-selected-item]="selectedData?.title === data.title"
+        [class.mobile-search-results]="!isSearchEmpty" 
+        (click)="selectTitle(data)"
+      >{{ data.title }}</div>
+      <div *ngIf="selectedData?.title === data.title" class="right" [class.mobile-search-results]="!isSearchEmpty" >
+        <textarea class="speech" [(ngModel)]="selectedData!.speech" disabled></textarea>
+        <div class="list-details">
+          <div class="author">{{ selectedData!.author }}</div>
+          <div>
+            <ng-container *ngFor="let item of keywordsList">
+              <span *ngIf="item.keywords !== ''" class="list-keywords">{{ item.keywords }}</span>
+            </ng-container>
+          </div>
+          <div class="date">{{ selectedData!.date | date: 'MMMM d, y' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
