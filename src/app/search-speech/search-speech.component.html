@@ -1,4 +1,5 @@
-<div class="search">
+<div *ngIf="!isMobile; else mobile">
+  <div class="search">
     <div>
         <label>Search by author</label>
         <input [(ngModel)]="authorQuery" placeholder="Enter author">
@@ -11,11 +12,30 @@
         <label>Search by keywords</label>
         <input [(ngModel)]="keywordsQuery" placeholder="Enter keywords">
     </div>
-    <button (click)="search()" class="btn-search">Search</button>
-    
+    <button (click)="search()" class="btn-search">Search</button>  
     <button (click)="resetFilters()" class="btn-clear">Clear</button>
 </div>
-<!-- Rest of your template -->
+</div>
+<ng-template #mobile>
+  <div class="mobile-search">
+    <div>
+        <label>Search by author</label>
+        <input [(ngModel)]="authorQuery" placeholder="Enter author">
+    </div>
+    <div>
+        <label>Search by title</label>
+        <input [(ngModel)]="titleQuery" placeholder="Enter title">
+    </div>
+    <div>
+        <label>Search by keywords</label>
+        <input [(ngModel)]="keywordsQuery" placeholder="Enter keywords">
+    </div>
+    <div class="mobile-search-btn">
+      <button (click)="search()" class="btn-search">Search</button>  
+      <button (click)="resetFilters()" class="btn-clear">Clear</button>
+    </div>
+</div>
+</ng-template>
 
 <div *ngIf="filteredList.length > 0" class="two-column-container">
   <div class="list">
@@ -25,7 +45,7 @@
   </div>
   <div *ngIf="selectedData?.title" class="right">
     <div class="speech-column">
-      <textarea class="speech" [(ngModel)]="selectedData!.speech"></textarea>
+      <textarea class="speech" [(ngModel)]="selectedData!.speech" disabled></textarea>
     </div>
     <div class="list-details">
       <div class="author">{{ selectedData!.author }}</div>

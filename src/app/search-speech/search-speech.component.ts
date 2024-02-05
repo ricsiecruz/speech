@@ -16,10 +16,15 @@ export class SearchSpeechComponent {
   authorQuery: string = '';
   titleQuery: string = '';
   keywordsQuery: string = '';
+  isMobile = false;
 
   constructor() {}
 
   ngOnInit() {
+    this.isMobile = this.getIsMobile();
+    window.onresize = () => {
+      this.isMobile = this.getIsMobile();
+    };
     // Retrieve existing speeches from local storage
     const existingSpeechData = localStorage.getItem('speechData');
 
@@ -34,6 +39,17 @@ export class SearchSpeechComponent {
 
     // Initialize the filteredList with all speeches
     this.filteredList = [...this.listOfSpeech];
+  }
+
+  getIsMobile(): boolean {
+    const w = document.documentElement.clientWidth;
+    const breakpoint = 992;
+    console.log(w);
+    if (w < breakpoint) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   search(): void {

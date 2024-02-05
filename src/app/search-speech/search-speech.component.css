@@ -218,3 +218,20 @@ input {
   padding: 10px;
   fill: #ef4444;
 }
+
+.mobile-search {
+  margin: 30px;
+  justify-content: space-between;
+  column-gap: 20px;
+  align-items: center;
+}
+
+.mobile-search div {
+  display: grid;
+  margin-bottom: 10px;
+}
+
+.mobile-search-btn {
+  display: flex !important;
+  justify-content: end;
+}

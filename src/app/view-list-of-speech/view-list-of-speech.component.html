@@ -1,8 +1,4 @@
 <div *ngIf="!isMobile; else mobile">
-    desktop
-    <div class="mobile">
-        bbb
-    </div>
     <div class="two-column-container">
         <div class="list">
           <div *ngFor="let data of listOfSpeech" class="list-item" [class.selected-item]="selectedData?.title === data.title" (click)="selectTitle(data)">
@@ -53,7 +49,6 @@
             </div>
         </div>
     </div>
-    
 </ng-template>
 
 <!-- view-list-of-speech.component.html -->

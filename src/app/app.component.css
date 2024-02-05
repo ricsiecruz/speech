@@ -52,3 +52,8 @@
 .mobile div:last-child:hover {
     border-radius: 0 0 6px 6px;
 }
+
+.mobile div:nth-child(2) {
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
