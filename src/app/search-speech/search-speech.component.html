@@ -1,4 +1,22 @@
-<input [(ngModel)]="searchQuery" placeholder="Search speeches..." (keyup)="search(searchQuery)">
+<div class="search">
+    <div>
+        <label>Search by author</label>
+        <input [(ngModel)]="authorQuery" placeholder="Enter author">
+    </div>
+    <div>
+        <label>Search by title</label>
+        <input [(ngModel)]="titleQuery" placeholder="Enter title">
+    </div>
+    <div>
+        <label>Search by keywords</label>
+        <input [(ngModel)]="keywordsQuery" placeholder="Enter keywords">
+    </div>
+    <button (click)="search()" class="btn-search">Search</button>
+    
+    <button (click)="resetFilters()" class="btn-clear">Clear</button>
+</div>
+<!-- Rest of your template -->
+
 <div *ngIf="filteredList.length > 0" class="two-column-container">
   <div class="list">
     <div *ngFor="let data of filteredList" class="list-item" [class.selected-item]="selectedData?.title === data.title" (click)="selectTitle(data)">

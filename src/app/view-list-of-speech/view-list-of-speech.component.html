@@ -1,34 +1,65 @@
-<div class="two-column-container">
-    <div class="list">
-      <div *ngFor="let data of listOfSpeech" class="list-item" [class.selected-item]="selectedData?.title === data.title" (click)="selectTitle(data)">
-        {{ data.title }}
-      </div>
+<div *ngIf="!isMobile; else mobile">
+    desktop
+    <div class="mobile">
+        bbb
     </div>
-    <div *ngIf="selectedData?.title" class="right">
-        <div class="speech-column">
-            <textarea class="speech" [(ngModel)]="selectedData.speech"></textarea>
+    <div class="two-column-container">
+        <div class="list">
+          <div *ngFor="let data of listOfSpeech" class="list-item" [class.selected-item]="selectedData?.title === data.title" (click)="selectTitle(data)">
+            {{ data.title }}
+          </div>
         </div>
-        <div class="list-details">
-            <div class="author">{{ selectedData.author }}</div>
-            <div>
-                <ng-container *ngFor="let item of keywordsList">
-                    <span *ngIf="item.keywords !== ''" class="list-keywords">{{ item.keywords }}</span>
-                </ng-container>
+        <div *ngIf="selectedData?.title" class="right">
+            <div class="speech-column">
+                <textarea class="speech" [(ngModel)]="selectedData.speech"></textarea>
             </div>
-            <div class="date">{{ selectedData.date | date: 'MMMM d, y' }}</div>
-        </div>
-        <div class="list-buttons">
-            <div class="list-delete" (click)="openDelete()">Delete</div>
-            <div class="list-save" (click)="save()">Save</div>
-            <div class="list-share">Share</div>
+            <div class="list-details">
+                <div class="author">{{ selectedData.author }}</div>
+                <div>
+                    <ng-container *ngFor="let item of keywordsList">
+                        <span *ngIf="item.keywords !== ''" class="list-keywords">{{ item.keywords }}</span>
+                    </ng-container>
+                </div>
+                <div class="date">{{ selectedData.date | date: 'MMMM d, y' }}</div>
+            </div>
+            <div class="list-buttons">
+                <div class="list-delete" (click)="openDelete()">Delete</div>
+                <div class="list-save" (click)="save()">Save</div>
+                <div class="list-share">Share</div>
+            </div>
         </div>
     </div>
 </div>
+<ng-template #mobile>
+    <div class="mobile-two-column-container">
+        <div *ngFor="let data of listOfSpeech" class="mobile-container">
+            <div class="mobile-list-item" [class.mobile-selected-item]="selectedData?.title === data.title" (click)="toggleSelection(data)">{{ data.title }}</div>
+            <div *ngIf="selectedData?.title === data.title" class="right">
+                <textarea class="speech" [(ngModel)]="selectedData.speech"></textarea>
+                <div class="list-details">
+                    <div class="author">{{ selectedData.author }}</div>
+                    <div>
+                        <ng-container *ngFor="let item of keywordsList">
+                            <span *ngIf="item.keywords !== ''" class="list-keywords">{{ item.keywords }}</span>
+                        </ng-container>
+                    </div>
+                    <div class="date">{{ selectedData.date | date: 'MMMM d, y' }}</div>
+                </div>
+                <div class="list-buttons">
+                    <div class="list-delete" (click)="openDelete()">Delete</div>
+                    <div class="list-save" (click)="save()">Save</div>
+                    <div class="list-share">Share</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</ng-template>
 
 <!-- view-list-of-speech.component.html -->
 <ng-template #modalContent let-modal>
   <div class="modal-header">
-      <button type="button" class="close" (click)="modal?.dismiss('Cross click')" style="">
+      <button type="button" class="close" (click)="modal?.dismiss('Cross click')">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
       </button>
   </div>

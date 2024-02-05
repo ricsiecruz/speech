@@ -1,6 +1,15 @@
-<div class="row nav">
-  <div class="col" routerLink="view" routerLinkActive='active'>View my Speeches</div>
-  <div class="col" routerLink="add" routerLinkActive='active'>Submit a new Speech</div>
-  <div class="col" routerLink="search" routerLinkActive='active'>Search all Speeches</div>
+<div *ngIf="!isMobile; else mobile">
+  <div class="row nav">
+    <div class="col" routerLink="view" routerLinkActive='active'>View my Speeches</div>
+    <div class="col" routerLink="add" routerLinkActive='active'>Submit a new Speech</div>
+    <div class="col" routerLink="search" routerLinkActive='active'>Search all Speeches</div>
+  </div>
 </div>
+<ng-template #mobile>
+  <div class="row nav mobile">
+    <div class="col" routerLink="view" routerLinkActive='active'>View my Speeches</div>
+    <div class="col" routerLink="add" routerLinkActive='active'>Submit a new Speech</div>
+    <div class="col" routerLink="search" routerLinkActive='active'>Search all Speeches</div>
+  </div>
+</ng-template>
 <router-outlet></router-outlet>

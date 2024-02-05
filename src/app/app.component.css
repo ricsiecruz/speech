@@ -16,16 +16,39 @@
     border-right: 1px solid #e2e8f0;
 }
 
-.active, .nav div:hover {
+.active,
+.nav div:hover {
     background-color: #3b82f6;
-    color: #FFFFFF;
+    color: #ffffff;
     cursor: pointer;
 }
 
-.nav div:first-child.active, .nav div:first-child:hover {
+.nav div:first-child.active,
+.nav div:first-child:hover {
     border-radius: 6px 0 0 6px;
-  }
-  
-  .nav div:last-child.active, .nav div:last-child:hover {
+}
+
+.nav div:last-child.active,
+.nav div:last-child:hover {
     border-radius: 0 6px 6px 0;
-  }
+}
+
+.mobile {
+    display: block;
+    width: 90%;
+    margin-top: 30px !important;
+}
+
+.mobile div {
+    width: 100%;
+}
+
+.mobile div:first-child.active,
+.nav div:first-child:hover {
+    border-radius: 6px 6px 0 0;
+}
+
+.mobile div:last-child.active,
+.mobile div:last-child:hover {
+    border-radius: 0 0 6px 6px;
+}

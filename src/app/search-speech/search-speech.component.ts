@@ -13,14 +13,16 @@ export class SearchSpeechComponent {
   selectedData: Speech | null = null;
   keywordsList: { keywords: string }[] = [];
   title: string = '';
-  searchQuery: string = ''; // Add this line to declare searchQuery property
+  authorQuery: string = '';
+  titleQuery: string = '';
+  keywordsQuery: string = '';
 
   constructor() {}
 
   ngOnInit() {
     // Retrieve existing speeches from local storage
     const existingSpeechData = localStorage.getItem('speechData');
-    
+
     // If there are existing speeches, parse and add them to the listOfSpeech
     if (existingSpeechData) {
       this.listOfSpeech = JSON.parse(existingSpeechData);
@@ -34,15 +36,21 @@ export class SearchSpeechComponent {
     this.filteredList = [...this.listOfSpeech];
   }
 
-  search(query: string): void {
-    console.log('Search query:', query);
-    // Perform case-insensitive search on author
+  search(): void {
+    // Perform case-insensitive search on author, title, and keywords
     this.filteredList = this.listOfSpeech.filter(speech =>
-      speech.author.toLowerCase().includes(query.toLowerCase())
+      speech.author.toLowerCase().includes(this.authorQuery.toLowerCase()) &&
+      speech.title.toLowerCase().includes(this.titleQuery.toLowerCase()) &&
+      speech.keywords.some(keyword => keyword.text.toLowerCase().includes(this.keywordsQuery.toLowerCase()))
     );
-    console.log('Filtered List:', this.filteredList);
   }
-  
+  resetFilters(): void {
+    // Clear search queries and reset filteredList to the original list
+    this.authorQuery = '';
+    this.titleQuery = '';
+    this.keywordsQuery = '';
+    this.filteredList = [...this.listOfSpeech];
+  }
 
   selectTitle(data: Speech): void {
     this.selectedData = data;
