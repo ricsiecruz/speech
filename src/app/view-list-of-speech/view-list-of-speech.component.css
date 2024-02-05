@@ -235,3 +235,9 @@
 .mobile-container .right div {
   border: none;
 }
+
+.save svg {
+  fill: #249783;
+  padding: 0;
+  border: none;
+}

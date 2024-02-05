@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class ViewListOfSpeechComponent {
   
   @ViewChild('modalContent') modalContent?: ElementRef<any>;
+  @ViewChild('saveContent') saveContent?: ElementRef<any>;
 
   isMobile = false;
   listOfSpeech: any[] = [];
@@ -90,7 +91,7 @@ export class ViewListOfSpeechComponent {
   
   openDelete(): void {
     if (this.selectedData) {
-      const modalRef = this.modalService.open(this.modalContent);
+      this.modalService.open(this.modalContent);
       this.title = this.selectedData.title;
 
   }
@@ -122,6 +123,7 @@ export class ViewListOfSpeechComponent {
       this.selectedData.speech
       // Save the updated data to local storage
       localStorage.setItem('speechData', JSON.stringify(this.listOfSpeech));
+      this.modalService.open(this.saveContent);
     }
   }
   
